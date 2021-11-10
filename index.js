@@ -63,7 +63,7 @@ async function run() {
 // Get appointments info from database 
         app.get('/appointments', verifyToken, async (req, res) => {
             const email = req.query.email;
-            const date = new Date(req.query.date).toLocaleDateString();
+            const date = req.query.date;
             const query = { patientEmail: email, date: date };
             const cursor = appointmentsCollection.find(query);
             const appointments = await cursor.toArray();
